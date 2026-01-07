@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const { log } = require('console');
+const connectDB = require('./config/db');
+
 
 const app = express();
+console.log('hello');
 
 
 //middleware to handle cors
@@ -17,8 +20,10 @@ app.use(
     })
 )
 
+//connect database
+connectDB()
 //middleware
-app.use(express.json())
+app.use(express.json());
 
 
 //Routes
