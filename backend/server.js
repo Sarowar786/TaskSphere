@@ -29,7 +29,7 @@ app.use(express.json());
 
 //Routes
 
-app.use('/app/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 // app.use('/app/users', userRoutes);
 // app.use('/app/tasks', taskRoutes);
 // app.use('/app/reports', reportRoutes);

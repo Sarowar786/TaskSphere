@@ -24,11 +24,11 @@ const registerUser = async(req, res)=>{
         // Determine user role : if correct token provide? admin : member
         let role ="member";
         if(adminInviteToken && adminInviteToken == process.env.ADMIN_INVITE_TOKEN){
-            role = "admin "
+            role = "admin"
         }
 
         //Hash password
-        const salt = await bcrypt.getSalt(10);
+        const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
         //Create user
@@ -41,7 +41,7 @@ const registerUser = async(req, res)=>{
         });
 
         //return user data and token
-        if(user){
+        
             res.status(201).json({
                 _id:user._id,
                 name:user.name,
@@ -50,7 +50,6 @@ const registerUser = async(req, res)=>{
                 role:user.role,
                 token:generateToken(user._id)
             })
-        }
     } catch (error) {
         res.status(500).json({message: "Server error", error:error.message})
     }
